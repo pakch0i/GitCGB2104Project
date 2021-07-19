@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  security:
+    user:
+      name: jack
+      password: '{bcrypt}$2a$10$nv7aq1Qh1oI/xGVWIpbxLeYCQaiP4wA327HmozONhg3g2Q12ihqhG'
+
+
+
