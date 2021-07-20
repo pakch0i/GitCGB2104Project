@@ -10,7 +10,7 @@ public class SpringSecurityApplication {
         SpringApplication.run(SpringSecurityApplication.class,args);
         encodePwd();
     }
-    //dfdsg胜多负少的
+
     static void encodePwd(){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String password = "123456"; //明文
