@@ -1,4 +1,4 @@
-package com.cy.jt.security.config;
+package com.cy.jt.security.config.Handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

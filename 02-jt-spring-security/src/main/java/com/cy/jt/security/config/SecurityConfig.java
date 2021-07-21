@@ -1,5 +1,6 @@
 package com.cy.jt.security.config;
 
+import com.cy.jt.security.config.Handler.JsonAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,11 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html")//登录页面
                 .loginProcessingUrl("/login")//与form表单中的action值相同
                 //.usernameParameter("username")//与form表单中input元素的name属性相同
-               // .passwordParameter("password")
-                .defaultSuccessUrl("/index.html");//登录成功后的url地址
+                // .passwordParameter("password")
+//                .defaultSuccessUrl("/index.html");//登录成功后的url地址
                 //.failureUrl("/login.html?error");//登录失败(默认)
-//               .successForwardUrl("/index.html");
+                //.successForwardUrl("/index.html");
                 //.successHandler(new RedirectAuthenticationSuccessHandler ("http://www.tedu.cn"));
+                    .successHandler(new JsonAuthenticationSuccessHandler());
         //3.放行登录url(不需要认证就可以访问)
         http.authorizeRequests()
                 .antMatchers("/login.html","/index.html")//这里写要放行的资源
