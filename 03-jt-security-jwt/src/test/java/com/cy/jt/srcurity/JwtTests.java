@@ -44,5 +44,6 @@ public class JwtTests {
                         .parseClaimsJws(token)  //获取token中的负载
                         .getBody();  //获取具体负载内容
         System.out.println(body);
+        System.out.println(body.get("username"));
     }
 }
