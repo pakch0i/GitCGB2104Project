@@ -1,6 +1,7 @@
 package com.cy.jt.security.config;
 
 import com.cy.jt.security.config.Handler.DefaultAccessDeniedExceptionHandler;
+import com.cy.jt.security.config.Handler.DefaultAuthenticationEntryPoint;
 import com.cy.jt.security.config.Handler.DefaultAuthenticationFailureHandler;
 import com.cy.jt.security.config.Handler.JsonAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +13,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
+ * 由@Configuration注解描述的类为spring中的配置类,配置类会在spring
+ * 工程启动时优先加载,在配置类中通常会对第三方资源进行初始配置.
  *
+ * @EnableGlobalMethodSecurity 注解由SpringSecurity提供,用于
+ * 描述权限配置类,告诉系统底层在启动时,进行访问权限的初始化配置
+ * 1)Enable-启用
+ * 2)Global-全局
+ * 3)Method-方法
+ * 4)Security-安全
  */
-//由SpringSecurity提供,用于描述权限配置类,告诉系统底层在启动时,进行访问权限的初始化配置
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -26,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         //2.配置登录url
         http.formLogin()
-                .loginPage("/login.html")//登录页面
+                .loginPage("/login")//登录页面
                 .loginProcessingUrl("/login")//与form表单中的action值相同
                 //.usernameParameter("username")//与form表单中input元素的name属性相同
                 // .passwordParameter("password")
@@ -40,7 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //配置登出url
         http.logout().logoutUrl("/logout").logoutSuccessUrl("/login.html");
         //设置需要认证与拒绝访问的异常处理
-        http.exceptionHandling().accessDeniedHandler(new DefaultAccessDeniedExceptionHandler());
+        http.exceptionHandling()
+                .authenticationEntryPoint(new DefaultAuthenticationEntryPoint())//没有认证时执行
+                .accessDeniedHandler(new DefaultAccessDeniedExceptionHandler());//没有授权时执行
+
 
 
         //3.放行登录url(不需要认证就可以访问)

@@ -1,6 +1,10 @@
 package com.cy.jt.security.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +31,21 @@ public class ResourceController {
     @RequestMapping("/doDelete")
     public String doDelete(){
         return "delete resource(delete data) ok";
+    }
+
+    /**
+     * 获取用户登录信息
+     */
+    @GetMapping("/doGetUser")
+    public String doGetUsre(){
+        //从Session中获取用户认证信息
+        //1)Authentication 认证对象(封装了登录用户信息的对象)
+        //2)SecurityContextHolder  持有登录状态的信息的对象(底层可通过session获取用户信息)
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+        //基于认证对象获取用户身份信息
+        User principal =(User) authentication.getPrincipal();
+        System.out.println("principal="+principal);
+        return principal.getUsername()+":"+principal.getAuthorities();
     }
 }

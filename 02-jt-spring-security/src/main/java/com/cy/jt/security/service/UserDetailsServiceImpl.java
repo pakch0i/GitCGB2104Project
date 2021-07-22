@@ -17,6 +17,12 @@ import java.util.List;
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+    /**
+     * @Autowrie注解描述属性时,注入规则是怎样的?
+     * spring框架会依据@Autowrie注解描述的属性类型,从spring容器查找对应的
+     * Bean,假如只找到一个则直接注入,假如找到多个还会比对属性名是否与容器中的
+     * Bean的名字有相同的,有则直接注入,没有则抛出异常.
+     */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     /**
