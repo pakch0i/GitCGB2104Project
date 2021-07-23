@@ -17,7 +17,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new TokenInterceptor())
-                //配置要拦截的url
+                //配置要拦截的url123
                 .addPathPatterns("/retrieve","/update");
     }
 }
