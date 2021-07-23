@@ -27,7 +27,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         String token =request.getHeader("Authentication");
 //        String token = request.getParameter("Authentication");
         System.out.println(token);
-        //判断请求中是否有令牌1111
+        //判断请求中是否有令牌
         if(token==null||"".equals(token))
             throw new RuntimeException("plese login");
         boolean flag = JwtUtils.isTokenExpired(token);
