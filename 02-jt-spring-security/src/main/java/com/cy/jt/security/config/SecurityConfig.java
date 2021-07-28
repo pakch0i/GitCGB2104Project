@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         //2.配置登录url
         http.formLogin()
-                .loginPage("/login")//登录页面
+                .loginPage("/login.html")//登录页面
                 .loginProcessingUrl("/login")//与form表单中的action值相同
                 //.usernameParameter("username")//与form表单中input元素的name属性相同
                 // .passwordParameter("password")

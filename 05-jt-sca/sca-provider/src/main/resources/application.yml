@@ -1,0 +1,9 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: sca-provider   #服务器名,后续会在注册中心呈现这个名字
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848

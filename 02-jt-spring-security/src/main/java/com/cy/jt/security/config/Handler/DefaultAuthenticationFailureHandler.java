@@ -28,7 +28,7 @@ public class DefaultAuthenticationFailureHandler implements AuthenticationFailur
         //4.向客户端输出一个json格式字符串
         //4.1构建一个map对象
         Map<String,Object> map=new HashMap<>();
-        map.put("state","200");
+        map.put("state","500");
         map.put("msg","username or password error");
         //4.2基于jackson中的ObjectMapper对象将一个对象转换为json格式字符串
         String jsonStr= new ObjectMapper().writeValueAsString(map);
